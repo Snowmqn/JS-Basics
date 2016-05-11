@@ -26,7 +26,7 @@ function getName () {
 //then alerts "Welcome, " plus whatever the users name is.
 
 function welcome () {
-  return alert("Welcome, " + getName());
+  alert("Welcome, " + getName());
 }
 
 //////////////////PROBLEM 4////////////////////
@@ -49,6 +49,9 @@ function welcome () {
 // NaN
 // null
 // undefined
+// false
+// ""
+
 
 
 //////////////////PROBLEM 6////////////////////
@@ -64,11 +67,11 @@ function myName () {
 
 //Now save the function definition of myName into a new variable called newMyName
 
-var newMyName = myName();
+var newMyName = myName;
 
 //Now alert the result of invoking newMyName
 
-alert(newMyName);
+alert(newMyName());
 
 //////////////////PROBLEM 7////////////////////
 
@@ -77,7 +80,9 @@ alert(newMyName);
 //Create a function called outerFn which returns an anonymous function which returns your name.
 
 function outerFn () {
-  return myName();
+  return function() {
+    return "Dayne Snow"
+  }
 }
 
 //Now save the result of invoking outerFn into a variable called innerFn.

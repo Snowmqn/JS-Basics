@@ -9,12 +9,11 @@ var outer = function(){
 // Above you're given a function that returns another function which has a closure over the name variable.
 // Invoke outer saving the return value into another variable called 'inner'.
 
-  //Code Here
+var inner = outer();
 
 //Once you do that, invoke inner.
 
-  //Code Here
-
+inner();
 
 
 //////////////////PROBLEM 2////////////////////
@@ -32,8 +31,8 @@ var callFriend = function(){
 //Above you're given a callFriend function that returns another function.
 //Do what you need to do in order to call your function and get 'Calling Jake at 435-215-9248' in your console.
 
-  //Code Here
-
+var callJake = callFriend();
+callJake("435-215-9248");
 
 
 //////////////////PROBLEM 3////////////////////
@@ -42,15 +41,23 @@ var callFriend = function(){
 
 /*
   Write a function called makeCounter that makes the following code work properly.
-*/  //Code Here
+*/ 
+
+function makeCounter () {
+  var counter = 0
+  return function() {
+    counter++;
+    return counter;
+  }
+}
   
   
 //Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+  var count = makeCounter();
+  count(); // 1
+  count(); // 2
+  count(); // 3
+  count(); // 4
 
 
 
@@ -64,7 +71,10 @@ var callFriend = function(){
 // You will need to use the module pattern to achieve this.
 
 function counterFactory(value) {
-  return {}
+  return {
+    inc: function () {value++;},
+    dec: function () {value--;}
+  }
 
     // Code inc function
     // Code dec function
@@ -84,13 +94,12 @@ counter = counterFactory(10);
 
   function motivation(firstname, lastname){
 
-    var welcomeText = 'Your doing awesome keep it up    ';
-
-    // code message function here
-
+    var welcomeText = 'Your doing awesome keep it up ';
+    
+    function message () { return welcomeText + firstname + " " + lastname}
 
     //Uncommment this to return the value of your invoked message function
-    // return message()
+    return message()
   }
 
   motivation('Billy', 'Bob'); // 'Your doing awesome keep it up Billy Bob
@@ -100,28 +109,29 @@ counter = counterFactory(10);
 //////////////////PROBLEM 6////////////////////
 // Inside the return create a publicMethod property that is a function that invokes privateMethod. After you create the privateMethod
 // Invoke it by calling module.publicMethod(); outside the module scope
+// var welcomeText = 'Your doing awesome keep it up ';
 
-  var module = (function() {
-    var person = {
-      name: "phillip",
-      age: 29,
-      location: 'Utah'
-    };
+//   var module = (function() {
+//     var person = {
+//       name: "phillip",
+//       age: 29,
+//       location: 'Utah'
+//     };
 
-    var privateMethod = function(){
-      return welcomeText + firstname + '  ' + lastname;
-    };
+//     var privateMethod = function(){
+//       return welcomeText + firstname + '  ' + lastname;
+//     };
 
-    // Anything that is being returned is made public and can be invoked from outside our lexical scope
+//     // Anything that is being returned is made public and can be invoked from outside our lexical scope
 
-    return {
-      // Code here
-    };
+//     return {
+//       publicMethod: privateMethod
+//     };
 
-  })();
+//   })();
 
-//Uncomment this after you create your public method
-//   module.publicMethod();
+// //Uncomment this after you create your public method
+// module.publicMethod();
 
 
 
@@ -160,4 +170,9 @@ counter = counterFactory(10);
   *Hint: Don't let this fool you. Break down what's really happening here.
 */
 
-
+var funcArray = [];
+for (let i=0;i<6;i++) {
+  funcArray[i] = function(){
+    return i;
+  }
+}
